@@ -48,3 +48,29 @@ for group, group_students in students.items():
     print(f"\nГрупа: {group}")
     for s in group_students:
         print(s)
+
+# РОБОТА СТУДЕНТА 2: [Грибоєдова Марина]
+# Характеристика структури: Структура "словник груп із вкладеними  списками словників студентів" є логічною та зручною для 
+# обробки даних по кожній групі окремо.
+
+def average_grade(student):
+    """Обчислює середній бал студента"""
+    grades = student["оцінки"].values()
+    return sum(grades) / len(grades) if grades else 0
+
+def sort_students_by_average(group):
+    """Сортує студентів за середнім балом (від вищого до нижчого)"""
+    if group in students:
+        return sorted(
+            students[group],
+            key=average_grade,
+            reverse=True
+        )
+    return []
+
+# Виведення результатів
+print("--- Список студентів групи КН-44, відсортований за середнім балом ---")
+sorted_students = sort_students_by_average("КН-44")
+
+for s in sorted_students:
+    print(f"{s['ПІБ']} — середній бал: {average_grade(s):.2f}")
